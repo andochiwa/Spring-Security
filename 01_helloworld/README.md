@@ -26,3 +26,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ## 自定义实现类设置
 
 1. 创建配置类，设置使用哪个`UserDetailsService`的实现类
+2. 实现`UserDetailsService`接口
+
+```java
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // 加密密码
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+```
+
+```java
+@Service("userDetailsService")
+public class MyUserDetailsService implements UserDetailsService {
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<GrantedAuthority> role = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
+        return new User("andochiwa",
+                new BCryptPasswordEncoder().encode("andochiwa"),
+                role);
+    }
+}
+```
