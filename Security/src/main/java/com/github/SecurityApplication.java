@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @create 04-22-17:18
  */
 @SpringBootApplication
-public class HelloWorldApplication {
+public class SecurityApplication {
 
     public static void main(String[] args){
-        SpringApplication.run(HelloWorldApplication.class, args);
+        SpringApplication.run(SecurityApplication.class, args);
     }
 }
