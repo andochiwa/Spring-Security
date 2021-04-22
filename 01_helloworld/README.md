@@ -65,3 +65,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
 1. 在配置类中配置访问地址权限
 2. 在`UserDetailsService`中把返回的对象设置权限
+
+## 权限设置方法
+
+1. `hasAuthority(String)` 针对单个权限设置
+2. `hasAnyAuthority(String..)` 针对多个权限设置
+3. `hasRole(String)` 针对单个角色设置
+4. `hasAnyRole(String..)` 针对多个角色设置
