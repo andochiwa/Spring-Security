@@ -34,7 +34,7 @@ public class MyUserDetailsService implements UserDetailsService {
         }
 
         List<GrantedAuthority> role =
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admins"); // 需要和权限一致
+                AuthorityUtils.commaSeparatedStringToAuthorityList("admins,ROLE_sale"); // 需要和权限一致
 
         return new User(user.getName(),
                 new BCryptPasswordEncoder().encode(user.getPassword()),

@@ -72,3 +72,31 @@ public class MyUserDetailsService implements UserDetailsService {
 2. `hasAnyAuthority(String..)` 针对多个权限设置
 3. `hasRole(String)` 针对单个角色设置
 4. `hasAnyRole(String..)` 针对多个角色设置
+
+# 注解使用
+
+## @Secured
+
+判断是否具有角色，匹配的是"Role_"，在controller上加上注解
+
+需要先开启注解`@EnableGlobalMethodSecurity(securedEnabled = true)`
+
+## @PreAuthorize
+
+方法执行前进行权限验证，可以将用户的roles/permissions参数传到方法中
+
+需要先开启注解`@EnableGlobalMethodSecurity(prePostEnabled = true)`
+
+## @PostAuthorize
+
+方法执行后进行权限验证，适合验证带有返回值的权限
+
+`@EnableGlobalMethodSecurity(prePostEnabled = true)`
+
+## @PreFilter
+
+对传入的数据进行过滤
+
+## @PostFilter("filterObject.name == 'andochiwa'")
+
+权限验证后对数据进行过滤，留下用户名为andochiwa的数据
