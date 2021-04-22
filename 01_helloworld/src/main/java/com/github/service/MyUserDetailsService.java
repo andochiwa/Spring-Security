@@ -1,5 +1,7 @@
 package com.github.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -18,11 +20,24 @@ import java.util.List;
  */
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<GrantedAuthority> role = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
-        return new User("andochiwa",
-                new BCryptPasswordEncoder().encode("andochiwa"),
+        QueryWrapper<com.github.entity.User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", username);
+        com.github.entity.User user = userService.getOne(wrapper);
+        if (user == null) {
+            throw new UsernameNotFoundException("用户名不存在");
+        }
+
+        List<GrantedAuthority> role =
+                AuthorityUtils.commaSeparatedStringToAuthorityList("admins"); // 需要和权限一致
+
+        return new User(user.getName(),
+                new BCryptPasswordEncoder().encode(user.getPassword()),
                 role);
     }
 }

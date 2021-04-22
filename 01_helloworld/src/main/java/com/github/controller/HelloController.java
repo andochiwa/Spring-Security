@@ -15,4 +15,19 @@ public class HelloController {
     public String Hello() {
         return "hello";
     }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/hi")
+    public String hi() {
+        return "hi";
+    }
+
+    @GetMapping("login")
+    public String login() {
+        return "login";
+    }
 }

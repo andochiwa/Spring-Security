@@ -60,3 +60,8 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 }
 ```
+
+# 权限设置
+
+1. 在配置类中配置访问地址权限
+2. 在`UserDetailsService`中把返回的对象设置权限
