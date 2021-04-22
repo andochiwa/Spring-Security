@@ -16,7 +16,7 @@ import java.util.List;
  * @create 04-22-17:19
  */
 @RestController
-public class HelloController {
+public class SecurityController {
 
     @GetMapping("/hello")
     public String Hello() {

@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/login.html") // 登录页面设置
                 .loginProcessingUrl("/login") // 登录访问路径
-                .defaultSuccessUrl("/hello").permitAll() // 登录成功后的地址
+                .defaultSuccessUrl("/success.html").permitAll() // 登录成功后的地址
                 .and().authorizeRequests()
                 .antMatchers("/", "/hi", "/login").permitAll() // 设置无需登录即可可访问路径
 //                .antMatchers("/hello").hasAuthority("admins") // 针对单个权限
@@ -38,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 配置无权限访问页面
         http.exceptionHandling().accessDeniedPage("/unAuth.html");
+
+        // 退出登录
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/index").permitAll();
     }
 
     @Bean
