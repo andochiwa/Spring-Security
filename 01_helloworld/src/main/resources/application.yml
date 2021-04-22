@@ -3,3 +3,9 @@
 #    user:
 #      name: andochiwa
 #      password: andochiwa
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=Japan&useUnicode=true&characterEncoding=UTF-8
