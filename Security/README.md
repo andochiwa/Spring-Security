@@ -100,3 +100,11 @@ public class MyUserDetailsService implements UserDetailsService {
 ## @PostFilter("filterObject.name == 'andochiwa'")
 
 权限验证后对数据进行过滤，留下用户名为andochiwa的数据
+
+# CSTF(跨站请求伪造)
+
+**Cross-site request forgery**，为被称为**one-click attack**或**session riding**，通常缩写为**CSRF**或**XSRF**，是一种挟制用户在当前一登录的web应用程序上执行非本意的操作的攻击方法。跟**跨网站脚本**(XSS)相比，XSS利用的是用户对指定网站的信任，CSRF利用的是网站对用户网页浏览器的信任
+
+跨域请求攻击，是攻击者通过一些技术手段欺骗用户的浏览器去访问一个自己曾经认证过的网站并运行一些操作（发邮件，发消息，甚至非法财产操作）。由于浏览器曾经认证过，所以被访问的网站会认为是真正的用户操作而去运行。这利用了web中用户身份验证的一个漏洞: **简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的**
+
+从Spring Security4.0开始，默认情况下会启动CSRF保护，以防止CSRF攻击应用程序，Spring Security CSRF会针对PATCH，POST，PUT，DELETE
